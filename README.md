@@ -10,6 +10,9 @@ Stubx is an **intuitive, elegant, and modern programming language** designed for
 *   **Transpiles to Python:** Stubx leverages the robustness and extensive ecosystem of Python, generating clean and readable Python code.
 *   **Intuitive Control Structures:** Clear `if/else`, `while`, and `for` loops with block definitions using `:` and `end`.
 *   **Flexible Typing:** Dynamically typed with optional suffixes (`n` for number, `s` for string, `?` for boolean) for precise control when needed.
+
+## New Features in the V2
+
 *   **File System Operations:** Easily read from and append to files using `read` and `append_to`.
 *   **System Interaction:** Execute shell commands directly with `exec`.
 *   **Functional Power:** Use `map` and `filter` for concise list manipulations.
