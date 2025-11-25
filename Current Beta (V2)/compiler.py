@@ -19,7 +19,7 @@ from typing import List, Optional, Dict, Any, Tuple
 # --------------------------- 
 
 TokenSpec = [
-    ('COMMENT',  r'--\[(?s:.*?)\]--|--[^\n]*'),
+    ('COMMENT',  r'--\[(?s:.*?)(\s*)?\]--|--[^\n]*'),
     ('LET',      r'\blet\b'),
     ('NUMBER',   r'\d+(\.\d+)?n?'),
     ('STRING',   r'"([^"\\]|\\.)*"[ns]?'),
@@ -648,27 +648,27 @@ class CodeGen:
 
     def gen_call(self, node: Call) -> str:
         if node.name == 'len':
-            return f"len({', '.join(self.gen_expr(a) for a in node.args)})")
+            return f"len({', '.join(self.gen_expr(a) for a in node.args)})"
         if node.name == 'random':
-            return f"_stubx_random({', '.join(self.gen_expr(a) for a in node.args)})")
+            return f"_stubx_random({', '.join(self.gen_expr(a) for a in node.args)})"
         if node.name == 'upper':
-            return f"_stubx_upper({', '.join(self.gen_expr(a) for a in node.args)})")
+            return f"_stubx_upper({', '.join(self.gen_expr(a) for a in node.args)})"
         if node.name == 'int':
-            return f"int({', '.join(self.gen_expr(a) for a in node.args)})")
+            return f"int({', '.join(self.gen_expr(a) for a in node.args)})"
         if node.name == 'str':
-            return f"str({', '.join(self.gen_expr(a) for a in node.args)})")
+            return f"str({', '.join(self.gen_expr(a) for a in node.args)})"
         if node.name == 'read':
-            return f"_stubx_read({', '.join(self.gen_expr(a) for a in node.args)})")
+            return f"_stubx_read({', '.join(self.gen_expr(a) for a in node.args)})"
         if node.name == 'append_to':
-            return f"_stubx_append({', '.join(self.gen_expr(a) for a in node.args)})")
+            return f"_stubx_append({', '.join(self.gen_expr(a) for a in node.args)})"
         if node.name == 'exec':
-            return f"_stubx_exec({', '.join(self.gen_expr(a) for a in node.args)})")
+            return f"_stubx_exec({', '.join(self.gen_expr(a) for a in node.args)})"
         if node.name == 'map':
-            return f"_stubx_map({', '.join(self.gen_expr(a) for a in node.args)})")
+            return f"_stubx_map({', '.join(self.gen_expr(a) for a in node.args)})"
         if node.name == 'filter':
-            return f"_stubx_filter({', '.join(self.gen_expr(a) for a in node.args)})")
+            return f"_stubx_filter({', '.join(self.gen_expr(a) for a in node.args)})"
             
-        return f"{node.name}({', '.join(self.gen_expr(a) for a in node.args)})")
+        return f"{node.name}({', '.join(self.gen_expr(a) for a in node.args)})"
 
     def gen_expr(self, expr: ASTNode) -> str:
         if isinstance(expr, Number):
@@ -682,9 +682,9 @@ class CodeGen:
         if isinstance(expr, Var):
             return expr.name
         if isinstance(expr, ListLit):
-            return f"[{', '.join(self.gen_expr(x) for x in expr.items)}]")
+            return f"[{', '.join(self.gen_expr(x) for x in expr.items)}]"
         if isinstance(expr, Range):
-            return f"_stubx_range({self.gen_expr(expr.start)}, {self.gen_expr(expr.end)})")
+            return f"_stubx_range({self.gen_expr(expr.start)}, {self.gen_expr(expr.end)})"
         if isinstance(expr, BinOp):
             left = self.gen_expr(expr.left)
             right = self.gen_expr(expr.right)
