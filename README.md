@@ -10,19 +10,23 @@ Stubx is an **intuitive, elegant, and modern programming language** designed for
 *   **Transpiles to Python:** Stubx leverages the robustness and extensive ecosystem of Python, generating clean and readable Python code.
 *   **Intuitive Control Structures:** Clear `if/else`, `while`, and `for` loops with block definitions using `:` and `end`.
 *   **Flexible Typing:** Dynamically typed with optional suffixes (`n` for number, `s` for string, `?` for boolean) for precise control when needed.
+*   **File System Operations:** Easily read from and append to files using `read` and `append_to`.
+*   **System Interaction:** Execute shell commands directly with `exec`.
+*   **Functional Power:** Use `map` and `filter` for concise list manipulations.
+*   **Elegant Error Handling:** Handle exceptions gracefully with `attempt` and `recover` blocks.
 
 ## Quick Start
 
 To compile and run a Stubx script (`.stubx` file):
 
 ```bash
-python compilator.py --file your_script.stubx
+python "compiler V2.py" --file your_script.stubx
 ```
 
 To compile only (this will generate a `.py` file):
 
 ```bash
-python compilator.py --file your_script.stubx --no-run
+python "compiler V2.py" --file your_script.stubx --no-run
 ```
 
 ## Example
@@ -45,6 +49,13 @@ end
 10 + 20
 say "The result is: " + ~
 -- Output: The result is: 30
+
+-- Using new V2 features
+attempt:
+    read "config.txt"
+recover:
+    say "Config missing, using defaults."
+end
 ```
 
 ## About the Project
@@ -55,9 +66,9 @@ Stubx was created by **Louis Simonet** with a goal to create a more accessible a
 
 *   **Main page:** [Welcome page](https://louis.simonet.name/other/StubX/)
 *   **Documentation:** [Detailed Stubx Documentation](https://louis.simonet.name/other/StubX/docs.html)
-*   **Download Compiler from an other source:** [compilator.py](https://louis.simonet.name/other/StubX/compilator.py)
+*   **Download Compiler:** [compiler V2.py](https://louis.simonet.name/other/StubX/compiler%20V2.py)
 
 ## Disclaimer
 
 Beware, this project is still in development and the main features you might expect probably aren't implemented yet.
-I am activly working on it, but I can't garantee further development
+I am actively working on it, but I can't guarantee further development.
