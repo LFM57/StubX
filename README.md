@@ -20,7 +20,7 @@ Stubx is an **intuitive, elegant, and modern programming language** designed for
 
 ## Quick Start
 
-To compile and run a Stubx script (`.stubx` file):
+To run a Stubx script (`.stubx` file):
 
 ```bash
 python "compiler V2.py" --file your_script.stubx
@@ -30,6 +30,11 @@ To compile only (this will generate a `.py` file):
 
 ```bash
 python "compiler V2.py" --file your_script.stubx --no-run
+```
+To compile and run (this will also generate a `.py` file but will be ran for you:
+
+```bash
+python "compiler V2.py" --file your_script.stubx --compile
 ```
 
 ## Example
