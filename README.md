@@ -2,40 +2,59 @@
 
 Stubx is an **intuitive, elegant, and modern programming language** designed for unparalleled clarity and power. It aims to make coding feel more like writing prose, focusing on the logic and ideas rather than complex syntax.
 
-## Key Features
+## Versions & Features
 
-*   **Readability First:** Minimal syntax reduces clutter, making your code easy to understand for developers and non-developers alike.
-*   **Pipes & Juxtaposition:** Effortlessly chain operations and call functions. Write your logic from left to right, enhancing flow and comprehension.
-*   **Implicit Value (`~`):** Access the result of the last operation instantly, allowing for a seamless thought process in your code.
-*   **Transpiles to Python:** Stubx leverages the robustness and extensive ecosystem of Python, generating clean and readable Python code.
-*   **Intuitive Control Structures:** Clear `if/else`, `while`, and `for` loops with block definitions using `:` and `end`.
-*   **Flexible Typing:** Dynamically typed with optional suffixes (`n` for number, `s` for string, `?` for boolean) for precise control when needed.
+### First Version (V1) - The Foundation
+The core capabilities of Stubx:
+*   **Readability First:** Minimal syntax reduces clutter.
+*   **Pipes & Juxtaposition:** Chain operations (`x |> f`) and call functions naturally.
+*   **Implicit Value (`~`):** Access the result of the last operation instantly.
+*   **Control Structures:** Clear `if/else`, `while`, and `for` loops.
+*   **Flexible Typing:** Dynamically typed with optional suffixes.
 
-## New Features in the V2
-
-*   **File System Operations:** Easily read from and append to files using `read` and `append_to`.
+### Stable Release (V2) - Extended Capabilities
+Adds powerful system integration and functional patterns:
+*   **File System:** Easily `read` from and `append_to` files.
 *   **System Interaction:** Execute shell commands directly with `exec`.
 *   **Functional Power:** Use `map` and `filter` for concise list manipulations.
-*   **Elegant Error Handling:** Handle exceptions gracefully with `attempt` and `recover` blocks.
+*   **Error Handling:** Handle exceptions gracefully with `attempt` and `recover` blocks.
+
+### Current Release (V3) - Developer Tools (New!)
+Focuses on tooling, interactivity, and debugging:
+*   **Interactive REPL:** Experiment with Stubx code in real-time.
+*   **Formatter:** Automatically format your code for consistent style.
+*   **Debugger Mapping:** Runtime errors in Python are mapped back to their original line in the Stubx source file for easier debugging.
 
 ## Quick Start
 
-To run a Stubx script (`.stubx` file):
+To run a Stubx script using the latest version (V3):
 
 ```bash
-python "compiler V2.py" --file your_script.stubx
+python "Current Release (V3)/compiler.py" --file your_script.stubx
 ```
 
-To compile only (this will generate a `.py` file):
+### Other Commands (V3)
 
+**Start REPL (Interactive Shell):**
 ```bash
-python "compiler V2.py" --file your_script.stubx --no-run
+python "Current Release (V3)/compiler.py" --repl
 ```
-To compile and run (this will also generate a `.py` file but will be ran for you):
 
+**Format Code:**
 ```bash
-python "compiler V2.py" --file your_script.stubx --compile
+python "Current Release (V3)/compiler.py" --format your_script.stubx
 ```
+
+**Compile Only:**
+```bash
+python "Current Release (V3)/compiler.py" --file your_script.stubx --no-run
+```
+
+## Directory Structure
+
+*   `First Version (V1)/`: The original version of the compiler.
+*   `Stable Release (V2)/`: The previous beta, now stable with system features.
+*   `Current Release (V3)/`: The latest version including the REPL and Formatter.
 
 ## Example
 
@@ -54,11 +73,7 @@ end
 "stubx is fun" |> upper |> say
 -- Output: STUBX IS FUN
 
-10 + 20
-say "The result is: " + ~
--- Output: The result is: 30
-
--- Using new V2 features
+-- Using V2+ features
 attempt:
     read "config.txt"
 recover:
@@ -74,7 +89,6 @@ Stubx was created by me with a goal to create a more accessible and expressive p
 
 *   **Main page:** [Welcome page](https://louis.simonet.name/other/StubX/)
 *   **Documentation:** [Detailed Stubx Documentation](https://louis.simonet.name/other/StubX/docs.html)
-*   **Download Compiler:** [compiler V2.py](https://louis.simonet.name/other/StubX/compiler%20V2.py)
 
 ## Disclaimer
 
