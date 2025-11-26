@@ -599,11 +599,12 @@ class Formatter:
 # --------------------------- 
 
 class CodeGen:
-    def __init__(self, include_header=True):
+    def __init__(self, include_header=True, repl_mode=False):
         self.lines: List[str] = []
         self.indent = 0
         self.line_map: Dict[int, Tuple[int,int]] = {}
         self.include_header = include_header
+        self.repl_mode = repl_mode
 
     def writeln(self, s: str = '', src_pos: Optional[Tuple[int,int]] = None):
         py_line_no = len(self.lines) + 1
@@ -647,6 +648,7 @@ class CodeGen:
             expr_str = self.gen_expr(node.expr)
             self.writeln(f"{node.name} = {expr_str}", (node.line, node.col))
             self.writeln(f"_last_val = {node.name}")
+            if self.repl_mode: self.writeln("_repl_has_val = True")
         elif isinstance(node, Ask):
             self.writeln(f"{node.name} = input()", (node.line, node.col))
         elif isinstance(node, Fn):
@@ -721,6 +723,7 @@ class CodeGen:
             self.writeln(f"{self.gen_call(node)}", (node.line, node.col))
         elif isinstance(node, ExpressionStmt):
             self.writeln(f"_last_val = {self.gen_expr(node.expr)}", (node.line, node.col))
+            if self.repl_mode: self.writeln("_repl_has_val = True")
         else:
             raise NotImplementedError(f"CodeGen: unhandled node type {type(node)}")
 
@@ -846,7 +849,7 @@ def repl():
     print("StubX V3 REPL. Type 'exit' or 'quit' to leave.")
     
     # Initialize context with helpers
-    cg = CodeGen(include_header=True)
+    cg = CodeGen(include_header=True, repl_mode=True)
     # Generate header code
     cg.gen(Program([])) 
     header_code = cg.result()
@@ -874,14 +877,17 @@ def repl():
                 ast = parser.parse()
                 
                 # Generate code for this snippet (no header)
-                cg_snip = CodeGen(include_header=False)
+                # Reset the flag before running
+                ctx['_repl_has_val'] = False
+                
+                cg_snip = CodeGen(include_header=False, repl_mode=True)
                 cg_snip.gen(ast)
                 py_code = cg_snip.result()
                 
                 # Execute in persistent context
                 exec(py_code, ctx)
                 
-                if '_last_val' in ctx and ctx['_last_val'] is not None:
+                if ctx.get('_repl_has_val') and '_last_val' in ctx and ctx['_last_val'] is not None:
                     print(f"=> {ctx['_last_val']}")
                     
             except ParseError as e:
