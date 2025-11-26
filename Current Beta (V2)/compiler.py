@@ -13,6 +13,7 @@ import sys
 import argparse
 import traceback
 from typing import List, Optional, Dict, Any, Tuple
+import os
 
 # --------------------------- 
 # Lexer (tracks line/col)
@@ -768,6 +769,7 @@ def main(argv=None):
     p = argparse.ArgumentParser(description="Stubx transpiler (Phase 2).")
     p.add_argument('--file', '-f', required=True, help='Stubx source file (.stubx)')
     p.add_argument('--no-run', action='store_true', help='Only compile to .py, do not run')
+    p.add_argument('--no-compile', action='store_true', help='Only execute the script, do not compile to code to a .py file')
     args = p.parse_args(argv)
 
     src_path = args.file
@@ -788,19 +790,26 @@ def main(argv=None):
         sys.exit(1)
 
     out_path = write_py(py, src_path)
-    print(f"Compiled {src_path} -> {out_path}")
+
+    if not args.no_compile: 
+        print(f"Compiled {src_path} -> {out_path}")
 
     if args.no_run:
         print("Compilation finished (no run).")
         return
 
-    print("=== Generated Python (first 200 lines) ===")
-    for i, line in enumerate(py.splitlines()[:200], start=1):
-        mapped = line_map.get(i)
-        m = f"  # <- Stubx ln {mapped[0]}" if mapped else ""
-        print(f"{i:04d}: {line}{m}")
+    if not args.no_compile:
+        print("=== Generated Python (first 200 lines) ===")
+        for i, line in enumerate(py.splitlines()[:200], start=1):
+            mapped = line_map.get(i)
+            m = f"  # <- Stubx ln {mapped[0]}" if mapped else ""
+            print(f"{i:04d}: {line}{m}")
+
     print("=== Running... ===")
     run_generated(py, line_map, src_path)
+    
+    if args.no_compile: 
+        os.remove(out_path)
 
 
 if __name__ == '__main__':
