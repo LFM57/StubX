@@ -63,7 +63,7 @@ end
 
 ## About the Project
 
-Stubx was created by **Louis Simonet** with a goal to create a more accessible and expressive program language. The project aims to simplify how we write code, bridging the gap between natural language and powerful scripting.
+Stubx was created by me with a goal to create a more accessible and expressive program language. The project aims to simplify how we write code, bridging the gap between natural language and powerful scripting.
 
 ## Links
 
@@ -74,4 +74,4 @@ Stubx was created by **Louis Simonet** with a goal to create a more accessible a
 ## Disclaimer
 
 Beware, this project is still in development and the main features you might expect probably aren't implemented yet.
-I am actively working on it, but I can't guarantee further development.
+I am actively working on it, but I am a studetn, so I obviously can't guarantee further development.
