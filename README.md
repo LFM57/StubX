@@ -87,8 +87,8 @@ Stubx was created by me with a goal to create a more accessible and expressive p
 
 ## Links
 
-*   **Main page:** [Welcome page](https://louis.simonet.name/other/StubX/)
-*   **Documentation:** [Detailed Stubx Documentation](https://louis.simonet.name/other/StubX/docs.html)
+*   **Main page:** [Welcome page](https://louis.simonet.name/StubX%20Project/)
+*   **Documentation:** [Detailed Stubx Documentation](https://louis.simonet.name/StubX%20Project/docs.html)
 
 ## Disclaimer
 
