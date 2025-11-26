@@ -79,4 +79,4 @@ Stubx was created by me with a goal to create a more accessible and expressive p
 ## Disclaimer
 
 Beware, this project is still in development and the main features you might expect probably aren't implemented yet.
-I am actively working on it, but I am a studetn, so I obviously can't guarantee further development.
+I am actively working on it, but I am a student, so I obviously can't guarantee further development.
