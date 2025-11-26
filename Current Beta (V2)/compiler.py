@@ -791,19 +791,20 @@ def main(argv=None):
 
     out_path = write_py(py, src_path)
 
-    if args.compile: 
-        print(f"Compiled {src_path} -> {out_path}")
 
-    if args.no_run:
-        print("Compilation finished (no run).")
-        return
-
-    if args.compile:
+    if args.compile or args.no_run:
         print("=== Generated Python (first 200 lines) ===")
         for i, line in enumerate(py.splitlines()[:200], start=1):
             mapped = line_map.get(i)
             m = f"  # <- Stubx ln {mapped[0]}" if mapped else ""
             print(f"{i:04d}: {line}{m}")
+
+    if args.compile: 
+        print(f"Compiled {src_path} -> {out_path}")
+
+    if args.no_run:
+        print(f"Compilation finished to {out_path}.")
+        return
 
     print("=== Running... ===")
     run_generated(py, line_map, src_path)
